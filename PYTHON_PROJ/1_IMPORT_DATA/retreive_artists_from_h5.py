@@ -1,6 +1,6 @@
 import sys
 # insert at 1, 0 is the script path (or '' in REPL)
-sys.path.insert(1, '/home/crottondi/PIRISI_TESI/TESI_BIS/')
+sys.path.insert(1, '/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ')
 
 from primary.data_io import retrieve_artist_dict, save_data
 import os

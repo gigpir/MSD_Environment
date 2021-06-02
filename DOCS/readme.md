@@ -103,43 +103,8 @@
 
 
 
-# **Script**
-
-###### Il progetto che contiene gli script `.py` elencati qui sotto si trova nella directory `/home/crottondi/PIRISI_TESI/`.
-###### Gli script `.sbatch` necessari alla sottomissione dei job si trovano nella directory `/home/crottondi/4_SBATCH_COMPACT`
+## Script `.sbatch`
 
 
-### Generazione matrice delle distanze:
-  Per svolgere questa operazione sul dataset completo è necessario suddividere il lavoro su più nodi. Purtroppo non sono riuscito ad integrare i moduli MPI e singularity sul cluster
-  quindi l'implementazione 'multinodo' è statica e si articola in queste fasi.
 
-- #### Generazione chunk
-  Viene usato `3_RANKING/1_generate_N_chunks.py` per generare `n` chunk del tipo `chunk_<i>.pkl`
-  in una cartella output.\
-  Ogni file `chunk_<i>.pkl` contiene una lista di id artista. Una volta che si decide il numero di chunk non è necessario
-  avviare ogni volta questo script.
-  
-  ###### Script `.sbatch`: fare riferimento a `/home/crottondi/PIRISI_TESI/4_SBATCH_COMPACT/4_COMPACT_create_chunks.sbatch`
-  
-- #### Calcolo delle distanze 
-  `4_SCRIPTS/build_distances_chunk.py` è uno script che lavora in multiprocessing (livello nodo). Riceve come parametri 
-  la metrica, il dataset, e il chunk assegnato.\
-  Produce in output un file `.pkl` contenente un dizionario di dizionari.\
-  Laddove si voglia cambiare la metrica di confronto tra le heatmap occorre aggiungere un valore per parametro 
-  metric nel main e modificare opportunamente la funzione `build_matrix_slave`.    
-  
-  ###### Script `.sbatch`: fare riferimento a `/home/crottondi/PIRISI_TESI/4_SBATCH_COMPACT/4_COMPACT_build_distances_cc_peak_<1>_master.sh`  
-- #### Merge chunk
-  `4_SCRIPTS/merge_chunks.py` riceve come parametri la cartella contente i `chunk_<i>_OUT.pkl` e il numero di chunk.\
-  Produce in output un file `.pkl` contenente un DataFrame Pandas. 
-  I file `distances_cc_peak_1.pkl ` e `distances_cc_peak_2.pkl` ne sono un esempio.
-  
-  ###### Script `.sbatch`: fare riferimento a `/home/crottondi/PIRISI_TESI/4_SBATCH_COMPACT/4_COMPACT_merge_chunks.sbatch`
-
-### Generazione `ground_truth.pkl`, `heatmaps.pkl`, `names.pkl` :
-  ###### Script `.py`: `4_SCRIPTS/build_names_heatmap_gt.py`
-  ###### Script `.sbatch`: fare riferimento a `/home/crottondi/PIRISI_TESI/4_SBATCH_COMPACT/4_COMPACT_build_names_heatmap_gt.sbatch`
-
-### Generazione `max_length_ranking_cc_peak_1.pkl` e `max_length_ranking_cc_peak_2.pkl`:
-  ###### Script `.py`: `4_SCRIPTS/build_names_heatmap_gt.py`
-  ###### Script `.sbatch`: fare riferimento a `/home/crottondi/PIRISI_TESI/4_SBATCH_COMPACT/4_COMPACT_build_names_heatmap_gt.sbatch`
+  ###### 

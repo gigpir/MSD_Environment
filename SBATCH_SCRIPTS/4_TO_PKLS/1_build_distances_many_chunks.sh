@@ -1,0 +1,1 @@
+sbatch || sed -e 's/{NUMBER}/1/g' 1_build_distances_chunk.sbatch

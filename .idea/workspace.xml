@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="add sbatch">
-      <change beforePath="$PROJECT_DIR$/SBATCH_SCRIPTS/4_TO_PKLS/1_build_distances_chunk.sbatch" beforeDir="false" afterPath="$PROJECT_DIR$/SBATCH_SCRIPTS/4_TO_PKLS/1_build_distances_chunk.sbatch" afterDir="false" />
+    <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="min fix">
+      <change afterPath="$PROJECT_DIR$/PYTHON_PROJ/TMP/workbench.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SBATCH_SCRIPTS/4_TO_PKLS/2_merge_chunks.sbatch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SBATCH_SCRIPTS/4_TO_PKLS/3_build_max_length_ranking.sbatch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SBATCH_SCRIPTS/TMP/workbench.sbatch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +199,7 @@
       <option name="presentableId" value="Default" />
       <updated>1622654138293</updated>
       <workItem from="1622654139387" duration="9389000" />
-      <workItem from="1622670325211" duration="4402000" />
+      <workItem from="1622670325211" duration="7462000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1622668821098</created>
@@ -232,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622674214469</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="min fix">
+      <created>1622674739144</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1622674739144</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -252,9 +263,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <MESSAGE value="min fix" />
     <MESSAGE value="add sbatch" />
-    <option name="LAST_COMMIT_MESSAGE" value="add sbatch" />
+    <MESSAGE value="min fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="min fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MSD_Environment$heatmap_multiproc.coverage" NAME="heatmap_multiproc Coverage Results" MODIFIED="1622655627333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/2_PREPROCESSING" />

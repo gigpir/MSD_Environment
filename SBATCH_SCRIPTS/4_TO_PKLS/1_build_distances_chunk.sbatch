@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=4_COMPACT_build_distances_chunk_{NUMBER}
+#SBATCH --job-name=build_distances_chunk_{NUMBER}
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=luigi.pirisi@studenti.polito.it
 #SBATCH --partition=global
@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=32
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --output=4_COMPACT_build_distances_chunk_{NUMBER}.log
+#SBATCH --output=./LOGS/build_distances_chunk_{NUMBER}.log
 #SBATCH --mem-per-cpu=100M
 
 #---- load python3 module

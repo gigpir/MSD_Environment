@@ -34,6 +34,7 @@ link repo: https://github.com/gigpir/MSD_Environment.git
   
   Cartella contenente gli script atti ad importare il dataset tralasciando i campi non necessari, organizzarli in un dizionario
   di oggetti e serializzare il dizionario in un file `.pkl` (`artists.pkl`). 
+  
 - ### 2_PREPROCESSING
 
   Cartella contenente gli script atti a fare preprocessing, calcolare le coordinate t-SNE, calcolare le heatmap, 
@@ -117,7 +118,7 @@ sbatch nome_script.sbatch
 
   ###### 
 
-Gli script che lavorano su un chunk vengono generati a partire da una matrice nella quale il numero di chunk è sostituito dalla dicitura `{NUMERO}`. Uno script `.sh` si occupa di generare lo script  `.sbatch` a partire dalla matrice utilizzato le istruzioni qui sotto e di sottometterlo automaticamente:
+Gli script che lavorano su un chunk vengono generati a partire da una matrice nella quale il numero di chunk è sostituito dalla dicitura `{NUMBER}`. Uno script `.sh` si occupa di generare lo script  `.sbatch` a partire dalla matrice utilizzato le istruzioni qui sotto e lo sottomette automaticamente:
 
 ```bash
 for i in {0..29}

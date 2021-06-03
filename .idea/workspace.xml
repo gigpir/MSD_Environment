@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="update markdown">
+    <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="min fix">
       <change beforePath="$PROJECT_DIR$/DOCS/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/DOCS/readme.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -195,7 +195,7 @@
       <option name="presentableId" value="Default" />
       <updated>1622654138293</updated>
       <workItem from="1622654139387" duration="9389000" />
-      <workItem from="1622670325211" duration="8242000" />
+      <workItem from="1622670325211" duration="8649000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1622668821098</created>
@@ -253,7 +253,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622679583608</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="update markdown">
+      <created>1622679595858</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1622679595858</updated>
+    </task>
+    <task id="LOCAL-00010" summary="min fix">
+      <created>1622679989735</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1622679989735</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,10 +288,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
     <MESSAGE value="add sbatch" />
-    <MESSAGE value="min fix" />
     <MESSAGE value="sbatch script update" />
     <MESSAGE value="update markdown" />
-    <option name="LAST_COMMIT_MESSAGE" value="update markdown" />
+    <MESSAGE value="min fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="min fix" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MSD_Environment$heatmap_multiproc.coverage" NAME="heatmap_multiproc Coverage Results" MODIFIED="1622655627333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/2_PREPROCESSING" />

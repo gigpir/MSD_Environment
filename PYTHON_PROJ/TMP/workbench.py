@@ -69,6 +69,8 @@ if __name__ == '__main__':
                         help='path to ranking file')
     parser.add_argument('--output_folder', '-o', required=False, type=str, default='./OUTPUT',
                         help='output folder')
+    parser.add_argument('--artists_pkl', '-a', required=False, type=str, default='./artists_hm.pkl',
+                        help='artists dictionary pathname')
     args = parser.parse_args()
 
     names = load_data(filename=args.names)
@@ -76,6 +78,15 @@ if __name__ == '__main__':
     ground_truth = load_data(filename=args.ground_truth)
     distances = load_data(filename=args.distances)
     ranking = load_data(filename=args.ranking)
-    output_folder = args.output_folder
-    print_histograms(gt_distances=distance_vs_gt_position(ground_truth=ground_truth, distances=distances), folder=output_folder)
+    artists = load_data(filename=args.artists_pkl)
 
+    for i, a in enumerate(artists.values()):
+        for s in a.song_list.values():
+            try:
+                print(s.id, s.tsne[0], s.tsne[1])
+            except:
+                print(s.id, 'NO tsne')
+        if i > 100:
+            exit(0)
+    #output_folder = args.output_folder
+    #print_histograms(gt_distances=distance_vs_gt_position(ground_truth=ground_truth, distances=distances), folder=output_folder)

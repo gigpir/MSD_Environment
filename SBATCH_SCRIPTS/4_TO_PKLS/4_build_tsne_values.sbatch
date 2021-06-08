@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=3_build_max_length_ranking
+#SBATCH --job-name=4_build_tsne_values_m{NUMBER}
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=luigi.pirisi@studenti.polito.it
 #SBATCH --partition=global

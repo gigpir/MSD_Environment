@@ -81,27 +81,65 @@ link repo: https://github.com/gigpir/MSD_Environment.git
     **TIPO:** dizionario di ranking.
     **Chiave**: id artista.
     **Valore**: ranking, una lista ordinata di id artista 
+    
   - #### ground_truth.pkl 
     **TIPO:** dizionario di ranking.
     **Chiave**: id artista.
     **Valore**: ranking, una lista ordinata di id artista 
   
   - #### heatmaps.pkl
-    **TIPO:** dizionario di matrici numpy.
+    **TIPO:** dizionario di tuple.
     **Chiave**: id artista.
-    **Valore**: opzionale, heatmap, matrice numpy 20x20. Gli artisti che non possiedono una heatmap hanno esplicitamente il valore `None` (null)
+    **Valore**: tupla contenente una matrice numpy 20x20 in posizione `0` e una lista in posizione `1`. 
+    
+    Ogni elemento della lista contiene a sua volta una lista formattata in questo modo: 
+    
+    `[<x_value> , <y_value>, <n_of_songs_in_that_cell>]`. 
+    
+     laddove la heatmap non sia presente per l'artista la tupla conterra due valori None.  
+    
+    ​	Esempio d'uso del dizionario: 
+    
+    ​	
+    
+    ```python
+    tupla = heatmaps['artist_id']
+    heatmap = tupla[0]
+    list_heatmap_not_normalized = tupla[1]
+    # oppure
+    heatmap, list_heatmap_not_normalized  = tupla
+    ```
     
   - #### names.pkl
     
     **TIPO:** dizionario di stringhe.
     **Chiave**: id artista.
     **Valore**: stringa corrispondente al nome dell'artista
+    
+  - #### tsne_values_m{i}.pkl
+  
+    **Descrizione**: contiene le coordinate t-SNE dei brani presenti nel dataset
+  
+    **TIPO:** dataframe Pandas.
+  
+    **Nome campi**: `<artist_id><song_id><tsne_0><tsne_1>`
+  
+    
 
 Suggerimenti per eseguire il codice in locale: 
 
   - settare la working directory in PYTHON_PROJ.
-  - Su MacOs usare un python3.7 non superiore (le versioni superiori non supportano la condivisione delle variabili globali tra processi).
+
+  - Su MacOs usare un python3.7 non superiore (le versioni superiori non supportano la condivisione delle variabili globali tra processi) e usare pickle5 anziché pickle (è sufficiente digitare
+
+    ```python
+    import pickle5 as pickle
+    ```
+
+     nel file `PYTHON_PROJ/primary/data_io.py`). Non occorre modificare le funzioni `load_data` and `save_data`
+
   - Su Linux usare python3.8 non superiore.
+
   - I file .pkl possono essere aperti e chiusi utilizzando i wrapper `load_data` e `save_data` che si trovano nel file `primary/data_io.py`
 
 

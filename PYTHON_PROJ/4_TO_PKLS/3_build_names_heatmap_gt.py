@@ -21,11 +21,12 @@ import pandas as pd
 def main(args):
     input_path = args.input_pkl
     output_path = args.output_path
+    note  = args.note
     if output_path[-1] != '/':
         output_path += '/'
 
     output_names = output_path + 'names.pkl'
-    output_heatmaps = output_path + 'heatmaps.pkl'
+    output_heatmaps = output_path + 'heatmaps'+note+'.pkl'
     output_gt = output_path + 'ground_truth.pkl'
 
     artists = load_data(filename=input_path)
@@ -59,11 +60,12 @@ def main(args):
             heat_map = None
             print('No heatmap for ', artist.id ,artist.name)
         heatmaps[id_] = artist.tsne_heatmap, heat_map
+
         ground_truth[id_] = artist.similar_artists
 
     save_data(filename=output_heatmaps, dict=heatmaps)
-    save_data(filename=output_names, dict=names)
-    save_data(filename=output_gt, dict=ground_truth)
+    #save_data(filename=output_names, dict=names)
+    #save_data(filename=output_gt, dict=ground_truth)
 
 
 
@@ -74,6 +76,8 @@ if __name__ == '__main__':
                         help='path to pkl artists dictionary it has to include heatmaps attached')
     parser.add_argument('--output_path', '-o', required=False, type=str, default='.',
                         help='path where output data will be saved')
+    parser.add_argument('--note', '-n', required=False, type=str, default='',
+                        help='annotation for filenames')
 
     args = parser.parse_args()
     main(args)

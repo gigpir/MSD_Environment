@@ -23,4 +23,4 @@ singularity exec /home/crottondi/PIRISI_TESI/singularity/projEnv_v2.img \
 python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/3_build_names_heatmap_gt.py \
 --input_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_m{NUMBER}_hm.pkl \
 --output_path /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL \
---note _{NUMBER}
+--note _m{NUMBER}

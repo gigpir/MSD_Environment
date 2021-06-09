@@ -63,21 +63,21 @@ link repo: https://github.com/gigpir/MSD_Environment.git
   Cartella contenente gli script per generare file `.pkl` derivati da `artist_m{i}_hm.pkl`.
   I file sono i seguenti:
   
-  - #### distances_cc_peak_1.pkl 
+  - #### distances_m{i}_cc_peak_1.pkl 
     **TIPO:** Pandas DataFrame.
     Contiene le distanze calcolate con il criterio
     che fa uso della cross correlazione considerando un solo picco.
     La funzione implementa la metrica è `compute_cross_correlation_distance`
     Per accedere alla distanza tra l'artista 'a' e l'artista 'b' digitare l'istruzione: `df['a']['b']` dopo aver caricato il file. 
   
-  - #### distances_cc_peak_2.pkl 
+  - #### distances_m{i}_cc_peak_2.pkl 
     **TIPO:** Pandas DataFrame.
     Contiene le distanze calcolate con il criterio
     che fa uso della cross correlazione considerando un solo picco e dividendo poi il valore dello shift per il picco stesso.
     La funzione implementa la metrica è `compute_cross_correlation_distance_normalized`
     Per accedere alla distanza tra l'artista 'a' e l'artista 'b' digitare l'istruzione: `df['a']['b']` dopo aver caricato il file.
   
-  - #### max_length_ranking_cc_peak_1.pkl e max_length_ranking_cc_peak_2.pkl
+  - #### max_length_ranking_m{i}\_cc_peak_1.pkl e max_length_ranking_m{i}_cc_peak_2.pkl
     **TIPO:** dizionario di ranking.
     **Chiave**: id artista.
     **Valore**: ranking, una lista ordinata di id artista 
@@ -87,7 +87,7 @@ link repo: https://github.com/gigpir/MSD_Environment.git
     **Chiave**: id artista.
     **Valore**: ranking, una lista ordinata di id artista 
   
-  - #### heatmaps.pkl
+  - #### heatmaps_m{i}.pkl
     **TIPO:** dizionario di tuple.
     **Chiave**: id artista.
     **Valore**: tupla contenente una matrice numpy 20x20 in posizione `0` e una lista in posizione `1`. 

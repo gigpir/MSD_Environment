@@ -1,0 +1,4 @@
+INFO: localdir at /scratch/140341.crottondi
+INFO: your job will run on local system.
+/home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/4_TO_PKLS
+/var/spool/slurm/d/job140341/slurm_script: line 27: 361586 Killed                  singularity exec /home/crottondi/PIRISI_TESI/singularity/projEnv_v2.img python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py --input_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_hm.pkl --metric cc_peak_1 --input_chunk /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/CHUNKS/chunk_23.pkl --output_path /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/CHUNK_OUT/

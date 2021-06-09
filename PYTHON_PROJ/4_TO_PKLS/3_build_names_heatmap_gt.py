@@ -35,8 +35,30 @@ def main(args):
     ground_truth = dict()
 
     for id_, artist in artists.items():
-        names[id_] = artist.id
-        heatmaps[id_] = artist.tsne_heatmap
+        names[id_] = artist.name
+
+        #heat_map is a list of <x_value><y_value><n_song_in_that_cell>
+        n_inliner_songs = 0
+        n_outlier_songs = 0
+        for s in artist.song_list.values():
+            try:
+                #inliner
+                if s.tsne[0] is not None and s.tsne[1] is not None:
+                    n_inliner_songs += 1
+            except:
+                #outlier
+                n_outlier_songs += 1
+        heat_map = []
+        try:
+            for i in range(artist.tsne_heatmap.shape[0]):
+                for j in range(artist.tsne_heatmap.shape[1]):
+                    if artist.tsne_heatmap[i][j] > 0:
+                        new_row = [i, j, artist.tsne_heatmap[i][j]*n_inliner_songs]
+                        heat_map.append(new_row)
+        except:
+            heat_map = None
+            print('No heatmap for ', artist.id ,artist.name)
+        heatmaps[id_] = artist.tsne_heatmap, heat_map
         ground_truth[id_] = artist.similar_artists
 
     save_data(filename=output_heatmaps, dict=heatmaps)

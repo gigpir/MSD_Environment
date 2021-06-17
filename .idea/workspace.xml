@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="min fix">
-      <change beforePath="$PROJECT_DIR$/DOCS/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/DOCS/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PYTHON_PROJ/primary/hungarian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,7 +40,7 @@
       <recent name="$PROJECT_DIR$/SUBSET_PKL" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.3_build_names_heatmap_gt">
+  <component name="RunManager" selected="Python.2_merge_chunks">
     <configuration name="1_build_distances_chunk" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MSD_Environment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -45,7 +55,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py" />
-      <option name="PARAMETERS" value="--input_chunk $PROJECT_DIR$/SUBSET_PKL/CHUNKS/chunk_1.pkl --input_pkl $PROJECT_DIR$/SUBSET_PKL/artists_hm.pkl --output_path $PROJECT_DIR$/SUBSET_PKL/CHUNKS/OUT --metric cc_peak_1" />
+      <option name="PARAMETERS" value="--input_chunk $PROJECT_DIR$/SUBSET_PKL/CHUNKS/chunk_1.pkl --input_pkl $PROJECT_DIR$/SUBSET_PKL/artists_hm.pkl --output_path $PROJECT_DIR$/SUBSET_PKL/CHUNKS/OUT --metric bipartite_hungarian" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -195,7 +205,13 @@
       <option name="presentableId" value="Default" />
       <updated>1622654138293</updated>
       <workItem from="1622654139387" duration="9389000" />
-      <workItem from="1622670325211" duration="8649000" />
+      <workItem from="1622670325211" duration="8874000" />
+      <workItem from="1622682201752" duration="439000" />
+      <workItem from="1623841688390" duration="15351000" />
+      <workItem from="1623864733982" duration="4159000" />
+      <workItem from="1623881450648" duration="4199000" />
+      <workItem from="1623886607870" duration="3284000" />
+      <workItem from="1623922298564" duration="8887000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1622668821098</created>
@@ -267,7 +283,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622679989735</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="min fix">
+      <created>1622680029775</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1622680029775</updated>
+    </task>
+    <task id="LOCAL-00012" summary="min fix">
+      <created>1622680161561</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1622680161561</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -293,12 +323,33 @@
     <MESSAGE value="min fix" />
     <option name="LAST_COMMIT_MESSAGE" value="min fix" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../Tesi/venv/lib/python3.8/site-packages/hungarian_algorithm/algorithm.py</url>
+          <line>491</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py</url>
+          <line>279</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py</url>
+          <line>43</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MSD_Environment$heatmap_multiproc.coverage" NAME="heatmap_multiproc Coverage Results" MODIFIED="1622655627333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/2_PREPROCESSING" />
-    <SUITE FILE_PATH="coverage/MSD_Environment$1_build_distances_chunk.coverage" NAME="1_build_distances_chunk Coverage Results" MODIFIED="1622659478032" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
+    <SUITE FILE_PATH="coverage/MSD_Environment$1_build_distances_chunk.coverage" NAME="1_build_distances_chunk Coverage Results" MODIFIED="1623930949210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$retreive_artists_from_h5.coverage" NAME="retreive_artists_from_h5 Coverage Results" MODIFIED="1622655125366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/1_IMPORT_DATA" />
     <SUITE FILE_PATH="coverage/MSD_Environment$1_generate_N_chunks.coverage" NAME="1_generate_N_chunks Coverage Results" MODIFIED="1622655858528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/3_GEN_CHUNKS" />
-    <SUITE FILE_PATH="coverage/MSD_Environment$2_merge_chunks.coverage" NAME="2_merge_chunks Coverage Results" MODIFIED="1622668357378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
+    <SUITE FILE_PATH="coverage/MSD_Environment$2_merge_chunks.coverage" NAME="2_merge_chunks Coverage Results" MODIFIED="1623935234300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$3_build_max_length_ranking.coverage" NAME="3_build_max_length_ranking Coverage Results" MODIFIED="1622668523886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$3_build_names_heatmap_gt.coverage" NAME="3_build_names_heatmap_gt Coverage Results" MODIFIED="1622668573086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
   </component>

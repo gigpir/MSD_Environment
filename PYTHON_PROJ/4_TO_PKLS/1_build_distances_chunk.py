@@ -7,7 +7,6 @@ from functools import partial
 
 
 sys.path.insert(1, '/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ')
-#sys.path.insert(1,'/home/gigi/Documents/Projects/MSD_Environment/PYTHON_PROJ')
 import numpy as np
 import argparse
 from primary.data_io import save_data, load_data

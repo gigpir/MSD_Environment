@@ -3,7 +3,7 @@ import numpy as np
 from tqdm import tqdm
 from photutils.detection import find_peaks
 from scipy import signal
-
+from scipy.optimize import linear_sum_assignment
 def heatmap(data, row_labels, col_labels, ax=None,
             cbar_kw={}, cbarlabel="", **kwargs):
     """
@@ -57,12 +57,13 @@ def heatmap(data, row_labels, col_labels, ax=None,
     for edge, spine in ax.spines.items():
         spine.set_visible(False)
 
-    ax.set_xticks(np.arange(data.shape[1]+1)-.5, minor=True)
-    ax.set_yticks(np.arange(data.shape[0]+1)-.5, minor=True)
-    #ax.grid(which="minor", color="w", linestyle='-', linewidth=3)
+    ax.set_xticks(np.arange(data.shape[1] + 1) - .5, minor=True)
+    ax.set_yticks(np.arange(data.shape[0] + 1) - .5, minor=True)
+    # ax.grid(which="minor", color="w", linestyle='-', linewidth=3)
     ax.tick_params(which="minor", bottom=False, left=False)
 
     return im, cbar
+
 
 def gen_heatmaps(artists, dimension, max, min):
     """
@@ -74,31 +75,31 @@ def gen_heatmaps(artists, dimension, max, min):
     print('Generating artist heatmaps')
     pbar = tqdm(total=len(artists))
     for a in artists.values():
-        a.tsne_heatmap = np.zeros((dimension,dimension))
+        a.tsne_heatmap = np.zeros((dimension, dimension))
         n_outliers = 0
         for s in a.song_list.values():
             if hasattr(s, 'tsne'):
-                row_idx = int(((s.tsne[0]+abs(min[0]))/(max[0]+abs(min[0]))) * dimension)
-                col_idx = int(((s.tsne[1]+abs(min[1]))/(max[1]+abs(min[1]))) * dimension)
-                a.tsne_heatmap[row_idx-1, col_idx-1] += 1
+                row_idx = int(((s.tsne[0] + abs(min[0])) / (max[0] + abs(min[0]))) * dimension)
+                col_idx = int(((s.tsne[1] + abs(min[1])) / (max[1] + abs(min[1]))) * dimension)
+                a.tsne_heatmap[row_idx - 1, col_idx - 1] += 1
             else:
                 n_outliers += 1
-        #normalize by number of artists song
-        a.tsne_heatmap /= len(a.song_list)-n_outliers
+        # normalize by number of artists song
+        a.tsne_heatmap /= len(a.song_list) - n_outliers
         pbar.update()
     pbar.close()
     return artists
 
-def plot_heatmaps(artists,dimension, min, max):
 
+def plot_heatmaps(artists, dimension, min, max):
     range_r = np.zeros((dimension))
     range_c = np.zeros((dimension))
     step_r = (max[0] - min[0]) / dimension
     step_c = (max[1] - min[1]) / dimension
-    for i,n in enumerate(range_c):
-        left = min[0]+i*step_r
-        right = min[0]+(i+1)*step_r
-        range_r[i] = (right+left)/2
+    for i, n in enumerate(range_c):
+        left = min[0] + i * step_r
+        right = min[0] + (i + 1) * step_r
+        range_r[i] = (right + left) / 2
 
         left = min[1] + i * step_c
         right = min[1] + (i + 1) * step_c
@@ -108,21 +109,20 @@ def plot_heatmaps(artists,dimension, min, max):
     range_r = [np.format_float_scientific(s, exp_digits=2, precision=1) for s in range_r]
 
     for a in artists.values():
-
         fig, ax = plt.subplots()
 
         im, cbar = heatmap(a.tsne_heatmap, range_r, range_c, ax=ax,
                            cmap="viridis", cbarlabel="songs concentration")
 
-        title = "TSNE Heatmap for "+ a.name
-        filename ='./Heatmaps/'+a.id
+        title = "TSNE Heatmap for " + a.name
+        filename = './Heatmaps/' + a.id
         ax.set_title(title)
         fig.tight_layout()
         plt.savefig(filename, dpi=300)
         plt.close('all')
 
 
-def compute_heatmap_distance(h1,h2,dimension=20,metric='minkowski_2'):
+def compute_heatmap_distance(h1, h2, dimension=20, metric='minkowski_2'):
     """
         Parameters
         ----------
@@ -146,18 +146,18 @@ def compute_heatmap_distance(h1,h2,dimension=20,metric='minkowski_2'):
     for i in range(dimension):
         for j in range(dimension):
             if metric == 'minkowski_2':
-                d = abs(h1[i][j]-h2[i][j])
+                d = abs(h1[i][j] - h2[i][j])
                 total_d += d
             if metric == 'soergel_7':
-                d = abs(h1[i][j]-h2[i][j])
-                div = max(h1[i][j],h2[i][j])
+                d = abs(h1[i][j] - h2[i][j])
+                div = max(h1[i][j], h2[i][j])
                 total_d += d
                 total_div += div
             if metric == 'not_intersection_11':
-                d = min(h1[i][j],h2[i][j])
+                d = min(h1[i][j], h2[i][j])
                 total_d += d
             if metric == 'kullback-leibler_37':
-                d = h1[i][j] * np.log(h1[i][j]/h2[i][j])
+                d = h1[i][j] * np.log(h1[i][j] / h2[i][j])
                 total_d += d
 
     if metric == 'soergel_7':
@@ -166,17 +166,17 @@ def compute_heatmap_distance(h1,h2,dimension=20,metric='minkowski_2'):
         total_d = 1 - total_d
     return total_d
 
+
 def compute_cross_correlation_distance(h1, h2, peak_thresh=1, dimension=20, max_peaks=1):
     shft_0 = np.array([19, 19])
 
     # compute cross correlation matrix
     X = signal.correlate2d(h1, h2)
 
-    #find peaks in matrix
+    # find peaks in matrix
     peak = find_peaks(data=X, threshold=0, box_size=1, npeaks=max_peaks)
     try:
         for p in peak:
-
 
             peak_value = p['peak_value']
             '''
@@ -188,14 +188,13 @@ def compute_cross_correlation_distance(h1, h2, peak_thresh=1, dimension=20, max_
             mean /= (39*39) - 1
             '''
             X[p['x_peak'], p['y_peak']] = 0
-            mean = np.sum(X)/(39*39-1)
+            mean = np.sum(X) / (39 * 39 - 1)
 
-
-            if peak_value > (peak_thresh*mean):
-                #se il picco > [1.1*media,...,1.5*media] => calcolare distanza sulla base dello shift
+            if peak_value > (peak_thresh * mean):
+                # se il picco > [1.1*media,...,1.5*media] => calcolare distanza sulla base dello shift
                 dist = np.linalg.norm(np.array([p['x_peak'], p['y_peak']]) - shft_0)
             else:
-                #altrimenti (se picco < di [1.1*media,...,1.5*media]) => impostare dist ad un valore massimo > di sqrt(19^2+19^2)
+                # altrimenti (se picco < di [1.1*media,...,1.5*media]) => impostare dist ad un valore massimo > di sqrt(19^2+19^2)
                 dist = np.sqrt((19 ^ 2) + (19 ^ 2))
     except:
         print("NO PEAKS FOUND")
@@ -203,17 +202,17 @@ def compute_cross_correlation_distance(h1, h2, peak_thresh=1, dimension=20, max_
 
     return dist
 
+
 def compute_cross_correlation_distance_normalized(h1, h2, peak_thresh=1, dimension=20, max_peaks=1):
     shft_0 = np.array([19, 19])
 
     # compute cross correlation matrix
     X = signal.correlate2d(h1, h2)
 
-    #find peaks in matrix
+    # find peaks in matrix
     peak = find_peaks(data=X, threshold=0, box_size=1, npeaks=max_peaks)
     try:
         for p in peak:
-
 
             peak_value = p['peak_value']
             '''
@@ -225,17 +224,55 @@ def compute_cross_correlation_distance_normalized(h1, h2, peak_thresh=1, dimensi
             mean /= (39*39) - 1
             '''
             X[p['x_peak'], p['y_peak']] = 0
-            mean = np.sum(X)/(39*39-1)
+            mean = np.sum(X) / (39 * 39 - 1)
 
-
-            if peak_value > (peak_thresh*mean):
-                #se il picco > [1.1*media,...,1.5*media] => calcolare distanza sulla base dello shift
+            if peak_value > (peak_thresh * mean):
+                # se il picco > [1.1*media,...,1.5*media] => calcolare distanza sulla base dello shift
                 dist = np.linalg.norm(np.array([p['x_peak'], p['y_peak']]) - shft_0)
             else:
-                #altrimenti (se picco < di [1.1*media,...,1.5*media]) => impostare dist ad un valore massimo > di sqrt(19^2+19^2)
+                # altrimenti (se picco < di [1.1*media,...,1.5*media]) => impostare dist ad un valore massimo > di sqrt(19^2+19^2)
                 dist = np.sqrt((19 ^ 2) + (19 ^ 2))
     except:
         print("NO PEAKS FOUND")
         dist = np.sqrt((19 ^ 2) + (19 ^ 2))
 
-    return dist/peak_value
+    return dist / peak_value
+
+def compute_distance_bipartite_graph_hungarian(h1, h2, dim=20):
+    # find non-empty bins number for each heatmap
+    non_zero_h1 = np.count_nonzero(h1)
+    non_zero_h2 = np.count_nonzero(h2)
+
+    # instantiate adjancency matrix of complete bipartite graph
+    #distances = np.zeros((non_zero_h1, non_zero_h2))
+    distances = []
+    count1 = 0
+    # fill in adjacency matrix with link lengths
+    for i in range(dim):
+        for j in range(dim):
+            if h1[i, j] > 0:
+                count2 = 0
+                row = []
+                for k in range(dim):
+                    for w in range(dim):
+                        if h2[k, w] > 0:
+                            # euclidean distance considering also the diffenence between 2 heatmap values
+                            row.append( np.sqrt(
+                                (k - i) ** 2 + (w - j) ** 2 + (h2[k, w] - h1[i, j]) ** 2))
+                            count2 += 1
+                count1 += 1
+                distances.append(row)
+    distances = np.array(distances)
+    if non_zero_h1 > non_zero_h2:
+        distances = distances.transpose()
+
+    #compute hugarian algorithm
+    row_ind, col_ind = linear_sum_assignment(distances)
+    # retreive non matched columns
+    non_matched_distances = np.delete(distances, col_ind, 1)
+    cost = distances[row_ind,col_ind].sum()
+    penalty = 0
+    if non_zero_h1 != non_zero_h2:
+        penalty = np.amin(non_matched_distances).sum()
+    total = cost + penalty
+    return total

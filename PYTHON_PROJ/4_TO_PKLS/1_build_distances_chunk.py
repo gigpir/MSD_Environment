@@ -7,11 +7,13 @@ from functools import partial
 
 
 sys.path.insert(1, '/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ')
+#sys.path.insert(1,'/home/gigi/Documents/Projects/MSD_Environment/PYTHON_PROJ')
 import numpy as np
 import argparse
 from primary.data_io import save_data, load_data
 from primary.heatmap import compute_heatmap_distance, compute_cross_correlation_distance, \
-    compute_cross_correlation_distance_normalized
+    compute_cross_correlation_distance_normalized, \
+    compute_distance_bipartite_graph_hungarian
 
 
 artists = None
@@ -23,17 +25,22 @@ def build_matrix_slave(metric,artists_ids):
     for i,a_outer_id in enumerate(artists_ids):
         d[a_outer_id] = dict()
         for a_inner_id, a_inner in artists.items():
-            try:
-                if artists[a_outer_id].tsne_heatmap is not None and a_inner.tsne_heatmap is not None:
-                    if metric == 'cc_peak_1':
-                        d[a_outer_id][a_inner_id] = compute_cross_correlation_distance(h1=artists[a_outer_id].tsne_heatmap,
-                                                                                       h2=a_inner.tsne_heatmap)
-                    elif metric == 'cc_peak_2':
-                        d[a_outer_id][a_inner_id] = compute_cross_correlation_distance_normalized(
-                            h1=artists[a_outer_id].tsne_heatmap,
-                            h2=a_inner.tsne_heatmap)
-            except Exception as e:
-                print(e)
+            if a_inner_id != a_outer_id:
+                try:
+                    if artists[a_outer_id].tsne_heatmap is not None and a_inner.tsne_heatmap is not None:
+                        if metric == 'cc_peak_1':
+                            d[a_outer_id][a_inner_id] = compute_cross_correlation_distance(h1=artists[a_outer_id].tsne_heatmap,
+                                                                                           h2=a_inner.tsne_heatmap)
+                        elif metric == 'cc_peak_2':
+                            d[a_outer_id][a_inner_id] = compute_cross_correlation_distance_normalized(
+                                h1=artists[a_outer_id].tsne_heatmap,
+                                h2=a_inner.tsne_heatmap)
+                        elif metric == 'bipartite_hungarian':
+                            d[a_outer_id][a_inner_id] = compute_distance_bipartite_graph_hungarian(
+                                h1=artists[a_outer_id].tsne_heatmap,
+                                h2=a_inner.tsne_heatmap)
+                except Exception as e:
+                    print(e)
         print(i, ' / ', len(artists_ids))
     return d
 
@@ -51,13 +58,17 @@ def build_matrix_master(chunk):
     func = partial(build_matrix_slave, metric)
 
     nproc = multiprocessing.cpu_count()
-
+    # nproc = 1
     artists_ids = list(chunk)
 
     split = np.array_split(artists_ids, nproc)
 
     with multiprocessing.Pool(nproc) as p:
         result = p.map(func, split)
+
+    #DEBUG
+    #result = func(artists_ids)
+
 
     d = merge_dictionaries(result=result)
 
@@ -101,9 +112,10 @@ if __name__ == '__main__':
     parser.add_argument('--output_path', '-o', required=False, type=str, default='',
                         help='path where output data will be saved')
     parser.add_argument('--metric', '-m', required=False, type=str, default='cc_peak_1',
-                        choices=['cc_peak_1', 'cc_peak_2'], help='metric type:\n'
+                        choices=['cc_peak_1', 'cc_peak_2', 'bipartite_hungarian'], help='metric type:\n'
                                                                  'cc_peak_1 con peak_thresh=1\n'
-                                                                 'cc_peak_2 calcolare la distanza da shift_0 e normalizzare (dividere) la distanza per il valore del picco')
+                                                                 'cc_peak_2 calcolare la distanza da shift_0 e normalizzare (dividere) la distanza per il valore del picco\n'
+                                                                    'bipartite_hungarian calcolare la distanza utilizzando associazioni tra grafi bipartiti + metodo ungherese')
 
     args = parser.parse_args()
     main(args)

@@ -16,7 +16,7 @@ from operator import itemgetter
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from tqdm import tqdm
 def distance_vs_gt_position(ground_truth, distances):
     gt_distances = np.zeros((len(ground_truth), 100))
     gt_distances.fill(np.nan)
@@ -52,7 +52,23 @@ def print_histograms(gt_distances, folder):
             print('Could not print histogram for position '+ str(position))
 
 
+def compute_minimum_size_to_total_intersection(ground_truth, my_ranking, output_folder):
 
+    d = dict()
+
+    for _id, gt_list in tqdm(ground_truth.items()):
+        if (_id in my_ranking.keys()) and (len(gt_list)>0) :
+            for i in range(len(my_ranking[_id])):
+                size = len(set(my_ranking[_id][:i]).intersection(gt_list))
+                if size >= len(gt_list):
+                    break
+            d[_id] = i+1
+        else:
+            print(_id ,(_id in my_ranking.keys()), (len(gt_list) > 0))
+    filename = os.path.join(output_folder, 'minimum_size_to_total_intesection.png')
+
+    plt.hist(d.values(), bins='auto')
+    plt.savefig(filename)
 
 
 if __name__ == '__main__':
@@ -73,20 +89,21 @@ if __name__ == '__main__':
                         help='artists dictionary pathname')
     args = parser.parse_args()
 
-    names = load_data(filename=args.names)
-    heatmaps = load_data(filename=args.heatmaps)
+    #names = load_data(filename=args.names)
+    #heatmaps = load_data(filename=args.heatmaps)
     ground_truth = load_data(filename=args.ground_truth)
-    distances = load_data(filename=args.distances)
+    #distances = load_data(filename=args.distances)
     ranking = load_data(filename=args.ranking)
-    artists = load_data(filename=args.artists_pkl)
-
-    for i, a in enumerate(artists.values()):
-        for s in a.song_list.values():
-            try:
-                print(s.id, s.tsne[0], s.tsne[1])
-            except:
-                print(s.id, 'NO tsne')
-        if i > 100:
-            exit(0)
+    #artists = load_data(filename=args.artists_pkl)
+    output_folder =args.output_folder
+    compute_minimum_size_to_total_intersection(ground_truth=ground_truth, my_ranking=ranking, output_folder=output_folder)
+    # for i, a in enumerate(artists.values()):
+    #     for s in a.song_list.values():
+    #         try:
+    #             print(s.id, s.tsne[0], s.tsne[1])
+    #         except:
+    #             print(s.id, 'NO tsne')
+    #     if i > 100:
+    #         exit(0)
     #output_folder = args.output_folder
     #print_histograms(gt_distances=distance_vs_gt_position(ground_truth=ground_truth, distances=distances), folder=output_folder)

@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="min fix">
-      <change afterPath="$PROJECT_DIR$/PYTHON_PROJ/primary/hungarian.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/TMP/workbench.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/TMP/workbench.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/PYTHON_PROJ" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SUBSET_OUTPUT" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PythonContentEntriesConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -40,7 +38,7 @@
       <recent name="$PROJECT_DIR$/SUBSET_PKL" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.2_merge_chunks">
+  <component name="RunManager" selected="Python.workbench">
     <configuration name="1_build_distances_chunk" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MSD_Environment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -121,7 +119,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/3_build_max_length_ranking.py" />
-      <option name="PARAMETERS" value="--distances $PROJECT_DIR$/SUBSET_PKL/distances_cc_peak_1.pkl --note cc_peak_1" />
+      <option name="PARAMETERS" value="--distances $PROJECT_DIR$/SUBSET_PKL/distances_bipartite_hungarian.pkl --note bipartite_hungarian" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -195,6 +193,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="workbench" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="MSD_Environment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PYTHON_PROJ/TMP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PYTHON_PROJ/TMP/workbench.py" />
+      <option name="PARAMETERS" value="--ground_truth $PROJECT_DIR$/SUBSET_PKL/ground_truth.pkl --ranking $PROJECT_DIR$/SUBSET_PKL/max_length_ranking_bipartite_hungarian.pkl --output_folder $PROJECT_DIR$/SUBSET_OUTPUT" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -211,7 +231,7 @@
       <workItem from="1623864733982" duration="4159000" />
       <workItem from="1623881450648" duration="4199000" />
       <workItem from="1623886607870" duration="3284000" />
-      <workItem from="1623922298564" duration="8887000" />
+      <workItem from="1623922298564" duration="17318000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1622668821098</created>
@@ -297,7 +317,21 @@
       <option name="project" value="LOCAL" />
       <updated>1622680161561</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="distance_bipartite_graph_hungarian">
+      <created>1623939553881</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1623939553881</updated>
+    </task>
+    <task id="LOCAL-00014" summary="min fix">
+      <created>1623939592107</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1623939592107</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,6 +354,7 @@
     <MESSAGE value="add sbatch" />
     <MESSAGE value="sbatch script update" />
     <MESSAGE value="update markdown" />
+    <MESSAGE value="distance_bipartite_graph_hungarian" />
     <MESSAGE value="min fix" />
     <option name="LAST_COMMIT_MESSAGE" value="min fix" />
   </component>
@@ -332,14 +367,14 @@
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py</url>
-          <line>279</line>
-          <option name="timeStamp" value="45" />
+          <url>file://$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py</url>
+          <line>41</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py</url>
-          <line>43</line>
-          <option name="timeStamp" value="46" />
+          <url>file://$PROJECT_DIR$/PYTHON_PROJ/primary/heatmap.py</url>
+          <line>277</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -350,7 +385,8 @@
     <SUITE FILE_PATH="coverage/MSD_Environment$retreive_artists_from_h5.coverage" NAME="retreive_artists_from_h5 Coverage Results" MODIFIED="1622655125366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/1_IMPORT_DATA" />
     <SUITE FILE_PATH="coverage/MSD_Environment$1_generate_N_chunks.coverage" NAME="1_generate_N_chunks Coverage Results" MODIFIED="1622655858528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/3_GEN_CHUNKS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$2_merge_chunks.coverage" NAME="2_merge_chunks Coverage Results" MODIFIED="1623935234300" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
-    <SUITE FILE_PATH="coverage/MSD_Environment$3_build_max_length_ranking.coverage" NAME="3_build_max_length_ranking Coverage Results" MODIFIED="1622668523886" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$3_build_names_heatmap_gt.coverage" NAME="3_build_names_heatmap_gt Coverage Results" MODIFIED="1622668573086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
+    <SUITE FILE_PATH="coverage/MSD_Environment$3_build_max_length_ranking.coverage" NAME="3_build_max_length_ranking Coverage Results" MODIFIED="1623940077015" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
+    <SUITE FILE_PATH="coverage/MSD_Environment$workbench.coverage" NAME="workbench Coverage Results" MODIFIED="1623949009219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/TMP" />
   </component>
 </project>

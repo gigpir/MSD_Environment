@@ -59,24 +59,24 @@ link repo: https://github.com/gigpir/MSD_Environment.git
   in _n_ chunk e li salva come `chunk_{i}.pkl` in un path specificato da linea di comando.
   
 - ### 4_TO_PKLS
-  
+
   Cartella contenente gli script per generare file `.pkl` derivati da `artist_m{i}_hm.pkl`.
   I file sono i seguenti:
-  
+
   - #### distances_m{i}_cc_peak_1.pkl 
     **TIPO:** Pandas DataFrame.
     Contiene le distanze calcolate con il criterio
     che fa uso della cross correlazione considerando un solo picco.
     La funzione implementa la metrica è `compute_cross_correlation_distance`
     Per accedere alla distanza tra l'artista 'a' e l'artista 'b' digitare l'istruzione: `df['a']['b']` dopo aver caricato il file. 
-  
+
   - #### distances_m{i}_cc_peak_2.pkl 
     **TIPO:** Pandas DataFrame.
     Contiene le distanze calcolate con il criterio
     che fa uso della cross correlazione considerando un solo picco e dividendo poi il valore dello shift per il picco stesso.
     La funzione implementa la metrica è `compute_cross_correlation_distance_normalized`
     Per accedere alla distanza tra l'artista 'a' e l'artista 'b' digitare l'istruzione: `df['a']['b']` dopo aver caricato il file.
-  
+
   - #### max_length_ranking_m{i}\_cc_peak_1.pkl e max_length_ranking_m{i}_cc_peak_2.pkl
     **TIPO:** dizionario di ranking.
     **Chiave**: id artista.
@@ -86,7 +86,7 @@ link repo: https://github.com/gigpir/MSD_Environment.git
     **TIPO:** dizionario di ranking.
     **Chiave**: id artista.
     **Valore**: ranking, una lista ordinata di id artista 
-  
+
   - #### heatmaps_m{i}.pkl
     **TIPO:** dizionario di tuple.
     **Chiave**: id artista.
@@ -117,14 +117,24 @@ link repo: https://github.com/gigpir/MSD_Environment.git
     **Valore**: stringa corrispondente al nome dell'artista
     
   - #### tsne_values_m{i}.pkl
-  
+
     **Descrizione**: contiene le coordinate t-SNE dei brani presenti nel dataset
-  
+
     **TIPO:** dataframe Pandas.
-  
+
     **Nome campi**: `<artist_id><song_id><tsne_0><tsne_1>`
-  
-    
+
+  - #### terms_per_artist.pkl
+
+    **TIPO:** dizionario di liste.
+    **Chiave**: id artista.
+    **Valore**: lista di tags corrispondente all'id dell'artista
+
+  - #### terms_occurences.pkl
+
+    **TIPO:** dizionario di interi.
+    **Chiave**: id artista.
+    **Valore**: valore corrispondente al numero di volte in cui occorre il tag sul dataset
 
 Suggerimenti per eseguire il codice in locale: 
 

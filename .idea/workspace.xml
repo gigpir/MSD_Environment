@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="docs updated">
-      <change beforePath="$PROJECT_DIR$/.idea/MSD_Environment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MSD_Environment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="55dfe4fd-d2f6-4ff2-a184-9f17528978c6" name="Default Changelist" comment="optimization">
+      <change afterPath="$PROJECT_DIR$/PYTHON_PROJ/TMP/get_terms_and_terms_occurrences.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/2_merge_chunks.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS/2_merge_chunks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/TMP/workbench.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/TMP/workbench.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PYTHON_PROJ/primary/data_io.py" beforeDir="false" afterPath="$PROJECT_DIR$/PYTHON_PROJ/primary/data_io.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +41,7 @@
       <recent name="$PROJECT_DIR$/SUBSET_PKL" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.workbench">
+  <component name="RunManager" selected="Python.get_terms_and_terms_occurrences">
     <configuration name="1_build_distances_chunk" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MSD_Environment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -176,6 +174,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="get_terms_and_terms_occurrences" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="MSD_Environment" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PYTHON_PROJ/TMP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PYTHON_PROJ/TMP/get_terms_and_terms_occurrences.py" />
+      <option name="PARAMETERS" value="--distances $PROJECT_DIR$/SUBSET_PKL/distances_bivariate_hungarian.pkl --ground_truth $PROJECT_DIR$/SUBSET_PKL/ground_truth.pkl --heatmaps $PROJECT_DIR$/SUBSET_PKL/heatmaps.pkl --names $PROJECT_DIR$/SUBSET_PKL/names.pkl --ranking $PROJECT_DIR$/SUBSET_PKL/max_length_ranking_bivariate_hungarian.pkl --output_folder $PROJECT_DIR$/SUBSET_OUTPUT/BIVARIATE_HUNGARIAN --artists_pkl $PROJECT_DIR$/SUBSET_PKL/artists_hm.pkl" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="heatmap_multiproc" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="MSD_Environment" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -268,7 +288,7 @@
       <workItem from="1623337014283" duration="833000" />
       <workItem from="1624005057980" duration="392000" />
       <workItem from="1624349625377" duration="4477000" />
-      <workItem from="1624433070791" duration="1559000" />
+      <workItem from="1624433070791" duration="2910000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1622668821098</created>
@@ -382,7 +402,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623230608287</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="optimization">
+      <created>1624440639517</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1624440639518</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +436,8 @@
     <MESSAGE value="tsne_values dataframe" />
     <MESSAGE value="heat_map implementation + min fix" />
     <MESSAGE value="docs updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="docs updated" />
+    <MESSAGE value="optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimization" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -430,6 +458,7 @@
     <SUITE FILE_PATH="coverage/MSD_Environment$heatmap_multiproc.coverage" NAME="heatmap_multiproc Coverage Results" MODIFIED="1622655627333" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/2_PREPROCESSING" />
     <SUITE FILE_PATH="coverage/MSD_Environment$3_build_max_length_ranking.coverage" NAME="3_build_max_length_ranking Coverage Results" MODIFIED="1624358696874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$1_generate_N_chunks.coverage" NAME="1_generate_N_chunks Coverage Results" MODIFIED="1622655858528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/3_GEN_CHUNKS" />
+    <SUITE FILE_PATH="coverage/MSD_Environment$get_terms_and_terms_occurrences.coverage" NAME="get_terms_and_terms_occurrences Coverage Results" MODIFIED="1624442059038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/TMP" />
     <SUITE FILE_PATH="coverage/MSD_Environment$2_merge_chunks.coverage" NAME="2_merge_chunks Coverage Results" MODIFIED="1624356161788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/4_TO_PKLS" />
     <SUITE FILE_PATH="coverage/MSD_Environment$retreive_artists_from_h5.coverage" NAME="retreive_artists_from_h5 Coverage Results" MODIFIED="1622655125366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PYTHON_PROJ/1_IMPORT_DATA" />
   </component>

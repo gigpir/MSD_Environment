@@ -63,12 +63,47 @@ def compute_minimum_size_to_total_intersection(ground_truth, my_ranking, output_
                 if size >= len(gt_list):
                     break
             d[_id] = i+1
-        else:
-            print(_id ,(_id in my_ranking.keys()), (len(gt_list) > 0))
+        #else:
+            #print(_id ,(_id in my_ranking.keys()), (len(gt_list) > 0))
     filename = os.path.join(output_folder, 'minimum_size_to_total_intesection.png')
 
     plt.hist(d.values(), bins='auto')
     plt.savefig(filename)
+
+
+def compute_intersection_percentage_vs_considered_ranking_size(ground_truth, my_ranking, output_folder):
+
+    d = dict()
+
+    #pick the first not null element in my ranking dictionary
+    size = 0
+    while size == 0:
+        values_view = my_ranking.values()
+        value_iterator = iter(values_view)
+        size = len(next(value_iterator))
+
+    for i in tqdm(range(size)):
+        percentages = []
+        for _id, gt_list in ground_truth.items():
+            if (_id in my_ranking.keys()) and (len(gt_list)>0) :
+                size = len(set(my_ranking[_id][:i]).intersection(gt_list)) / len(gt_list)
+                percentages.append(size)
+            # else:
+            #     print(_id ,(_id in my_ranking.keys()), (len(gt_list) > 0))
+        d[i] = np.mean(percentages)*100
+    filename = os.path.join(output_folder, 'intersection_vs_considered_ranking_size.png')
+
+    fig, ax = plt.subplots()
+    ax.plot(list(d.keys()), list(d.values()))
+
+    #compute the mean lenght of the ground truth
+    lenghts = map(lambda x: len(x), list(ground_truth.values()))
+    print(f'Ground truth mean size: {np.mean(list(lenghts))}')
+
+    ax.set(xlabel='portion of predicted ranking', ylabel='intersection size / ground truth size (%)',
+           title='intersection vs considered ranking_size')
+    ax.grid()
+    fig.savefig(filename)
 
 
 if __name__ == '__main__':
@@ -96,7 +131,8 @@ if __name__ == '__main__':
     ranking = load_data(filename=args.ranking)
     #artists = load_data(filename=args.artists_pkl)
     output_folder =args.output_folder
-    compute_minimum_size_to_total_intersection(ground_truth=ground_truth, my_ranking=ranking, output_folder=output_folder)
+    #compute_minimum_size_to_total_intersection(ground_truth=ground_truth, my_ranking=ranking, output_folder=output_folder)
+    compute_intersection_percentage_vs_considered_ranking_size(ground_truth=ground_truth, my_ranking=ranking, output_folder=output_folder)
     # for i, a in enumerate(artists.values()):
     #     for s in a.song_list.values():
     #         try:

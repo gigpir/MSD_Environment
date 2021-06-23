@@ -21,7 +21,7 @@ cd /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS
 
 singularity exec /home/crottondi/PIRISI_TESI/singularity/projEnv_v2.img \
 python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk.py \
---input_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_hm.pkl \
---metric cc_peak_1 \
+--input_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_m3_hm.pkl \
+--metric bipartite_hungarian \
 --input_chunk /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/CHUNKS/chunk_{NUMBER}.pkl \
 --output_path /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/CHUNK_OUT/

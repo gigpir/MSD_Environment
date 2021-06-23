@@ -1,0 +1,36 @@
+INFO: localdir at /scratch/145956.crottondi
+INFO: your job will run on local system.
+/home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/4_TO_PKLS
+chunk  0 Memory (GB) :  10.433841705322266
+chunk  1 Memory (GB) :  14.197296142578125
+chunk  2 Memory (GB) :  17.959808349609375
+chunk  3 Memory (GB) :  21.723987579345703
+chunk  4 Memory (GB) :  25.490318298339844
+chunk  5 Memory (GB) :  29.25360107421875
+chunk  6 Memory (GB) :  33.01798629760742
+chunk  7 Memory (GB) :  36.78127670288086
+chunk  8 Memory (GB) :  40.54374694824219
+chunk  9 Memory (GB) :  44.30702590942383
+chunk  10 Memory (GB) :  48.0703125
+chunk  11 Memory (GB) :  51.83359146118164
+chunk  12 Memory (GB) :  55.595619201660156
+chunk  13 Memory (GB) :  59.35636520385742
+chunk  14 Memory (GB) :  63.11711120605469
+chunk  15 Memory (GB) :  66.87908172607422
+chunk  16 Memory (GB) :  70.64046096801758
+chunk  17 Memory (GB) :  74.40121078491211
+chunk  18 Memory (GB) :  78.16217041015625
+chunk  19 Memory (GB) :  81.9227066040039
+chunk  20 Memory (GB) :  85.68366622924805
+chunk  21 Memory (GB) :  89.44441223144531
+chunk  22 Memory (GB) :  93.20516204833984
+chunk  23 Memory (GB) :  96.96590805053711
+chunk  24 Memory (GB) :  100.72665023803711
+chunk  25 Memory (GB) :  104.48740005493164
+chunk  26 Memory (GB) :  108.24793243408203
+chunk  27 Memory (GB) :  112.00868225097656
+chunk  28 Memory (GB) :  115.7811508178711
+chunk  29 Memory (GB) :  119.54189682006836
+before gc Memory (GB) :  119.54189682006836
+after gc Memory (GB) :  119.54189682006836
+chunk  29 Memory (GB) :  147.44481658935547

@@ -21,5 +21,5 @@ cd /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS
 
 singularity exec /home/crottondi/PIRISI_TESI/singularity/projEnv_v2.img \
 python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/3_build_max_length_ranking.py \
---distances /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/distances_cc_peak_1.pkl \
---note cc_peak_1
+--distances /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/distances_m3_bivariate_hungarian.pkl \
+--note bivariate_hungarian

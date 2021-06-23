@@ -82,7 +82,7 @@ def compute_intersection_percentage_vs_considered_ranking_size(ground_truth, my_
         value_iterator = iter(values_view)
         size = len(next(value_iterator))
 
-    for i in tqdm(range(size)):
+    for i in tqdm(range(0,size, 100)):
         percentages = []
         for _id, gt_list in ground_truth.items():
             if (_id in my_ranking.keys()) and (len(gt_list)>0) :

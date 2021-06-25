@@ -5,7 +5,7 @@ import sys
 import time
 from functools import partial
 from tqdm import tqdm
-
+from primary.utility import map_dict
 sys.path.insert(1, '/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ')
 import numpy as np
 import argparse
@@ -21,6 +21,26 @@ from tqdm import tqdm
 ranking = None
 ground_truth = None
 terms = None
+min_terms_occurence = None
+terms_occurrences = None
+
+
+def filter_list_with_min_occurences(list):
+    global min_terms_occurence
+    global terms_occurrences
+
+    new_list = []
+    for term in list:
+        # for each term in the list check if it occurs a minimum number of times
+        if terms_occurrences[term] >= min_terms_occurence:
+            new_list.append(term)
+    return new_list
+
+def apply_filter_to_terms():
+    global terms
+
+    terms = map_dict(lambda x: filter_list_with_min_occurences(x), terms)
+
 
 def compute_intersection_vs_position_slave(positions):
     d = dict()
@@ -49,8 +69,8 @@ def compute_intersection_vs_position_slave(positions):
         else:
             print(f"No artists at position {pos}!!!")
 
-        print(f'THREAD[{os.getpid()}] -> {positions[-1] - pos} positions remaining')
-    print(f'THREAD[{os.getpid()}] -> found {zero_terms_artists} artists with no terms')
+        print(f'THREAD[{os.getpid()}] -> {positions[-1] - pos} positions remaining',end='\r')
+    print(f'THREAD[{os.getpid()}] -> found {zero_terms_artists} times artists with no terms')
     return d
 
 def merge_dictionaries(result):
@@ -86,7 +106,9 @@ def compute_intersection_vs_position_master():
     return d
 
 def print_histogram(d, output_folder):
-    filename = os.path.join(output_folder, 'mean_terms_intersection_vs_position.png')
+    global min_terms_occurence
+    filename = 'mean_terms_intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'.png'
+    pathname = os.path.join(output_folder, filename)
 
     fig, ax = plt.subplots()
     ax.plot(list(d.keys()), list(d.values()))
@@ -94,18 +116,31 @@ def print_histogram(d, output_folder):
     ax.set(xlabel='position in ranking', ylabel='mean( terms intersection / reference artist terms list length) (%)',
            title='mean terms intersection vs position')
     ax.grid()
-    fig.savefig(filename)
+    fig.savefig(pathname)
 
 
 def main(args):
     global ranking
     global ground_truth
     global terms
+    global min_terms_occurence
+    global terms_occurrences
+
+    min_terms_occurence = args.min_terms_occurence
+
+
     output_folder = args.output_folder
     ground_truth = load_data(filename=args.ground_truth)
     ranking = load_data(filename=args.ranking)
     terms = load_data(filename=args.terms)
+    terms_occurrences = load_data(filename=args.terms_occurrences)
+
     t0 = time.time()
+
+    if min_terms_occurence > 0:
+        print(f'Apply filter to terms, threshold set to {min_terms_occurence}')
+        apply_filter_to_terms()
+
     d = compute_intersection_vs_position_master()
     print(f'Time taken: {time.time()-t0} s')
     print_histogram(d, output_folder)
@@ -126,8 +161,12 @@ if __name__ == '__main__':
                         help='output folder')
     parser.add_argument('--artists_pkl', '-a', required=False, type=str, default='./artists_hm.pkl',
                         help='artists dictionary pathname')
-    parser.add_argument('--terms', '-t', required=False, type=str, default='./artists_hm.pkl',
+    parser.add_argument('--terms', '-t', required=False, type=str, default='./terms_per_artist.pkl',
                         help='terms per artist file')
+    parser.add_argument('--terms_occurrences', '-T', required=False, type=str, default='./terms_occurrences.pkl',
+                        help='file that contains occurrence per each term present in the dataset')
+    parser.add_argument('--min_terms_occurence', '-thr', required=False, type=int, default=0,
+                        help='set a minimum threshold of occurence under which tags are not considered')
     args = parser.parse_args()
 
     main(args)

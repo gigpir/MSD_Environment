@@ -18,6 +18,11 @@ def str_vect_to_dict(vect):
             n += 1
     return y
 
+def map_dict(f,d):
+    new={}
+    for k, v in d.items():
+        new[k] = f(v)
+    return new
 
 def decrease_vector_size(vect,final_size):
     # Decrease array size by averaging adjacent values with numpy

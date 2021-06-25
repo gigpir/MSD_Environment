@@ -114,7 +114,7 @@ def print_histogram(d, output_folder):
     fig, ax = plt.subplots()
     ax.plot(list(d.keys()), list(d.values()))
 
-    ax.set(xlabel='position in ranking', ylabel='mean( terms intersection / reference artist terms list length)', # (%)',
+    ax.set(xlabel='position in ranking', ylabel='mean( terms intersection )', # (%)',
            title='mean terms intersection vs position')
     ax.grid()
     fig.savefig(pathname)

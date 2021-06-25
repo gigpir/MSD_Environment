@@ -5,8 +5,9 @@ import sys
 import time
 from functools import partial
 from tqdm import tqdm
-from primary.utility import map_dict
+
 sys.path.insert(1, '/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ')
+from primary.utility import map_dict
 import numpy as np
 import argparse
 from primary.data_io import save_data, load_data

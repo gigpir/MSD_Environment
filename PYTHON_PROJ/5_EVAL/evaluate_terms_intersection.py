@@ -127,7 +127,7 @@ def main(args):
     global min_terms_occurence
     global terms_occurrences
 
-    min_terms_occurence = args.min_terms_occurence
+    min_terms_occurence = args.min_terms_occurrence
 
 
     output_folder = args.output_folder

@@ -166,7 +166,7 @@ if __name__ == '__main__':
                         help='terms per artist file')
     parser.add_argument('--terms_occurrences', '-T', required=False, type=str, default='./terms_occurrences.pkl',
                         help='file that contains occurrence per each term present in the dataset')
-    parser.add_argument('--min_terms_occurence', '-thr', required=False, type=int, default=0,
+    parser.add_argument('--min_terms_occurrence', '-thr', required=False, type=int, default=0,
                         help='set a minimum threshold of occurence under which tags are not considered')
     args = parser.parse_args()
 

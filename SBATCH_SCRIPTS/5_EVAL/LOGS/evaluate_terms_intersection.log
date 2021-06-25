@@ -1,3 +1,7 @@
-INFO: localdir at /scratch/295952.crottondi
+INFO: localdir at /scratch/295957.crottondi
 INFO: your job will run on local system.
 /home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/5_EVAL
+Traceback (most recent call last):
+  File "/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/5_EVAL/evaluate_terms_intersection.py", line 8, in <module>
+    from primary.utility import map_dict
+ModuleNotFoundError: No module named 'primary'

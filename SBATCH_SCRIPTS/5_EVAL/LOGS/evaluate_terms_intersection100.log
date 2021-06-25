@@ -1,0 +1,9 @@
+INFO: localdir at /scratch/295962.crottondi
+INFO: your job will run on local system.
+/home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/5_EVAL
+Traceback (most recent call last):
+  File "/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/5_EVAL/evaluate_terms_intersection.py", line 173, in <module>
+    main(args)
+  File "/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/5_EVAL/evaluate_terms_intersection.py", line 130, in main
+    min_terms_occurence = args.min_terms_occurence
+AttributeError: 'Namespace' object has no attribute 'min_terms_occurence'

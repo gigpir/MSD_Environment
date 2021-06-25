@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=evaluate_terms_intersection.py
+#SBATCH --job-name=evaluate_terms_intersection{VAR}.py
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=luigi.pirisi@studenti.polito.it
 #SBATCH --partition=global
@@ -8,7 +8,7 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=16
-#SBATCH --output=./LOGS/evaluate_terms_intersection.log
+#SBATCH --output=./LOGS/evaluate_terms_intersection{VAR}.log
 #SBATCH --mem-per-cpu=100M
 
 #---- load python3 module
@@ -28,4 +28,6 @@ python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/5_EVAL/evaluate_
 --ranking /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/max_length_ranking_m3_bivariate_hungarian.pkl \
 --output_folder /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/BIV_HUN_HISTOGRAMS \
 --artists_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_m3_hm.pkl \
---terms /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/terms_per_artist.pkl
+--terms /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/terms_per_artist.pkl \
+--terms_occurrences /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/terms_occurrences.pkl \
+--min_terms_occurrence {VAR} 

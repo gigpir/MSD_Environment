@@ -56,7 +56,7 @@ def compute_intersection_vs_position_slave(positions):
         for _id, _ranking in ranking.items():
             try:
                 # compute the intersection between the terms of artist _id and the terms of artist at position p
-                tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) / len(terms[_ranking[pos]])
+                tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) / len(terms[_id])
                 n += 1
                 intersection += tmp
             except Exception as e:
@@ -95,7 +95,7 @@ def compute_intersection_vs_position_master():
         value_iterator = iter(values_view)
         size = len(next(value_iterator))
 
-    positions_list = list(range(0,size))
+    positions_list = list(range(0,500))
 
     split = np.array_split(positions_list, nproc)
 

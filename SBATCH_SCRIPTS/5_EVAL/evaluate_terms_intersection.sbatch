@@ -26,7 +26,7 @@ python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/5_EVAL/evaluate_
 --heatmaps /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/heatmaps_m3.pkl \
 --names /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/names.pkl \
 --ranking /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/max_length_ranking_m3_bivariate_hungarian.pkl \
---output_folder /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/BIV_HUN_HISTOGRAMS \
+--output_folder /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/BIV_HUN/NOT_NORM \
 --artists_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_m3_hm.pkl \
 --terms /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/terms_per_artist.pkl \
 --terms_occurrences /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/terms_occurrences.pkl \

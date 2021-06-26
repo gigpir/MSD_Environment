@@ -56,7 +56,7 @@ def compute_intersection_vs_position_slave(positions):
         for _id, _ranking in ranking.items():
             try:
                 # compute the intersection between the terms of artist _id and the terms of artist at position p
-                tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) #/ len(terms[_id])
+                tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) / len(terms[_ranking[pos]])
                 n += 1
                 intersection += tmp
             except Exception as e:
@@ -66,7 +66,7 @@ def compute_intersection_vs_position_slave(positions):
             # compute the mean intersection of terms of artists at position p
             intersection = intersection / n
             # create a new entry in the dictionary
-            d[pos] = intersection #* 100
+            d[pos] = intersection * 100
         else:
             print(f"No artists at position {pos}!!!")
 
@@ -114,7 +114,7 @@ def print_histogram(d, output_folder):
     fig, ax = plt.subplots()
     ax.plot(list(d.keys()), list(d.values()))
 
-    ax.set(xlabel='position in ranking', ylabel='mean( terms intersection )', #/ reference artist terms list length) (%)',
+    ax.set(xlabel='position in ranking', ylabel='mean( terms intersection / reference artist terms list length) (%)',
            title='mean terms intersection vs position')
     ax.grid()
     fig.savefig(pathname)

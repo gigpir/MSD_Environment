@@ -134,7 +134,11 @@ def compute_intersection_vs_position_master():
 def print_histogram(d, output_folder):
     global min_terms_occurence
     global mode
-    filename = 'intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'_'+mode+'.png'
+    global first_vals
+    if first_vals > 0:
+        filename = 'intersection_vs_position_min_term_occ' + str(min_terms_occurence) + '_' + mode + '_FIRST_'+first_vals+'.png'
+    else:
+        filename = 'intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'_'+mode+'.png'
     pathname = os.path.join(output_folder, filename)
 
     fig, ax = plt.subplots()

@@ -136,7 +136,7 @@ def print_histogram(d, output_folder):
     global mode
     global first_vals
     if first_vals > 0:
-        filename = 'intersection_vs_position_min_term_occ' + str(min_terms_occurence) + '_' + mode + '_FIRST_'+first_vals+'.png'
+        filename = 'intersection_vs_position_min_term_occ' + str(min_terms_occurence) + '_' + mode + '_FIRST_'+str(first_vals)+'.png'
     else:
         filename = 'intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'_'+mode+'.png'
     pathname = os.path.join(output_folder, filename)

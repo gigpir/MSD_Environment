@@ -18,13 +18,22 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 from tqdm import tqdm
-
+import scipy.stats
 ranking = None
 ground_truth = None
 terms = None
 min_terms_occurence = None
 terms_occurrences = None
 
+def mean_confidence_interval(data, confidence=0.95):
+    '''
+        generate mean and confidence value of a population
+    '''
+    a = 1.0 * np.array(data)
+    n = len(a)
+    m, se = np.mean(a), scipy.stats.sem(a)
+    h = se * scipy.stats.t.ppf((1 + confidence) / 2., n-1)
+    return m, h
 
 def filter_list_with_min_occurences(list):
     global min_terms_occurence
@@ -67,6 +76,7 @@ def compute_intersection_vs_position_slave(positions):
             intersection = intersection / n
             # create a new entry in the dictionary
             d[pos] = intersection * 100
+
         else:
             print(f"No artists at position {pos}!!!")
 
@@ -108,7 +118,7 @@ def compute_intersection_vs_position_master():
 
 def print_histogram(d, output_folder):
     global min_terms_occurence
-    filename = 'mean_terms_intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'_NOT_NORM.png'
+    filename = 'mean_terms_intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'.png'
     pathname = os.path.join(output_folder, filename)
 
     fig, ax = plt.subplots()

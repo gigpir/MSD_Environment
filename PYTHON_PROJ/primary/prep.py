@@ -9,7 +9,7 @@ from primary.utility import resize_matrix, robust_scaler
 def gen_dataset(artists,mode=3):
     """
                 Extract information from data and build a dataset of the type X, y
-                The features are standartized
+                The features are standardized
 
                 Parameters
                 ----------
@@ -61,10 +61,11 @@ def gen_dataset(artists,mode=3):
             pitch_mat = s.segments_pitches
 
             if mode >= 0:
+                # append mean values of each coloumn
                 feat_row = np.append(resize_matrix(mfcc_mat, rows), resize_matrix(pitch_mat, rows))
                 feat_row = np.append(feat_row, [s.tempo, s.loudness])
             if mode >= 1:
-                # append min, max, variance of each coloumn
+                # append variance of each coloumn
                 feat_row = np.append(feat_row, resize_matrix(mfcc_mat, rows, only_var=True))
                 feat_row = np.append(feat_row, resize_matrix(pitch_mat, rows, only_var=True))
             if mode >= 2:

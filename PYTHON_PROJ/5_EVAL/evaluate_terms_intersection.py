@@ -24,6 +24,8 @@ ground_truth = None
 terms = None
 min_terms_occurence = None
 terms_occurrences = None
+mode = None
+first_vals = -1
 
 def mean_confidence_interval(data, confidence=0.95):
     '''
@@ -56,26 +58,35 @@ def compute_intersection_vs_position_slave(positions):
     d = dict()
     global ranking
     global terms
+    global mode
     # for each position
     zero_terms_artists = 0
     for pos in positions:
-        intersection = 0
-        n = 0
+        intersection = []
         # for each artist
         for _id, _ranking in ranking.items():
             try:
                 # compute the intersection between the terms of artist _id and the terms of artist at position p
-                tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) / len(terms[_id])
-                n += 1
-                intersection += tmp
+                if mode == 'NORM_STD':
+                    tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) / len(terms[_id])
+                elif mode == 'NORM_OTHER':
+                    tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]])) / len(terms[_ranking[pos]])
+                elif mode == 'NOT_NORM':
+                    tmp = len(set(terms[_id]).intersection(terms[_ranking[pos]]))
+
+                intersection.append(tmp)
             except Exception as e:
                 #print(e)
                 zero_terms_artists += 1
-        if n != 0:
-            # compute the mean intersection of terms of artists at position p
-            intersection = intersection / n
+        if len(intersection) != 0:
+            # compute the mean intersection with confidence of terms of artists at position p
+            val, conf = mean_confidence_interval(intersection)
             # create a new entry in the dictionary
-            d[pos] = intersection * 100
+            if mode == 'NOT_NORM':
+                d[pos] = val, conf
+            else:
+                d[pos] = val*100, conf*100
+
 
         else:
             print(f"No artists at position {pos}!!!")
@@ -97,7 +108,7 @@ def compute_intersection_vs_position_master():
     global ranking
     global ground_truth
     global terms
-
+    global first_vals
     # pick the first not null element in my ranking dictionary
     size = 0
     while size == 0:
@@ -105,7 +116,11 @@ def compute_intersection_vs_position_master():
         value_iterator = iter(values_view)
         size = len(next(value_iterator))
 
-    positions_list = list(range(0,500))
+
+    if first_vals > 0:
+        positions_list = list(range(0, first_vals))
+    else:
+        positions_list = list(range(0, size))
 
     split = np.array_split(positions_list, nproc)
 
@@ -118,14 +133,38 @@ def compute_intersection_vs_position_master():
 
 def print_histogram(d, output_folder):
     global min_terms_occurence
-    filename = 'mean_terms_intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'.png'
+    global mode
+    filename = 'intersection_vs_position_min_term_occ'+str(min_terms_occurence)+'_'+mode+'.png'
     pathname = os.path.join(output_folder, filename)
 
     fig, ax = plt.subplots()
-    ax.plot(list(d.keys()), list(d.values()))
+    x = []
+    y = []
+    ci = []
+    for k, v in d.items():
+        x.append(k)
+        y.append(v[0])
+        ci.append(v[1])
+    x = np.array(x)
+    y = np.array(y)
+    ci = np.array(ci)
 
-    ax.set(xlabel='position in ranking', ylabel='mean( terms intersection / reference artist terms list length) (%)',
-           title='mean terms intersection vs position')
+    ax.plot(x, y)
+    ax.fill_between(x, (y - ci), (y + ci), color='b', alpha=.1)
+
+    if mode == 'NORM_STD':
+        ax.set(xlabel='position in ranking',
+               ylabel='mean( terms intersection / reference artist terms list length) (%)',
+               title='mean terms intersection vs position')
+    elif mode == 'NORM_OTHER':
+        ax.set(xlabel='position in ranking',
+               ylabel='mean( terms intersection / extern artist terms list length) (%)',
+               title='mean terms intersection vs position')
+    elif mode == 'NOT_NORM':
+        ax.set(xlabel='position in ranking',
+               ylabel='mean( terms intersection ) ',
+               title='mean terms intersection vs position')
+
     ax.grid()
     fig.savefig(pathname)
 
@@ -136,10 +175,13 @@ def main(args):
     global terms
     global min_terms_occurence
     global terms_occurrences
+    global mode
+    global first_vals
 
+    first_vals = args.first_vals
     min_terms_occurence = args.min_terms_occurrence
 
-
+    mode = args.mode
     output_folder = args.output_folder
     ground_truth = load_data(filename=args.ground_truth)
     ranking = load_data(filename=args.ranking)
@@ -178,6 +220,10 @@ if __name__ == '__main__':
                         help='file that contains occurrence per each term present in the dataset')
     parser.add_argument('--min_terms_occurrence', '-thr', required=False, type=int, default=0,
                         help='set a minimum threshold of occurence under which tags are not considered')
+    parser.add_argument('--mode', '-m', required=False, type=str, default='NORM_STD', choices=['NORM_STD','NORM_OTHER','NOT_NORM'],
+                        help='set the criteria to compute the intersection')
+    parser.add_argument('--first_vals', '-f', required=False, type=int, default=-1,
+                        help='if you want to stop the plot at a specific position')
     args = parser.parse_args()
 
     main(args)

@@ -26,6 +26,11 @@ min_terms_occurence = None
 terms_occurrences = None
 mode = None
 first_vals = -1
+# TODO
+# matrice ungherese cambio del peso del picco (proovare 5 e 10)
+# creare matrice triangolare delle intersezioni delle liste dei tag (non normalizzate)
+# plottare minimo e massimo anzichè confidenza
+# analizzare i tag (tag comuni) (singolare plurale)
 
 def mean_confidence_interval(data, confidence=0.95):
     '''

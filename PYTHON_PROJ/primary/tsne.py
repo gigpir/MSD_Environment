@@ -18,7 +18,7 @@ from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_selection import RFECV
 from sklearn.neighbors import LocalOutlierFactor
 
-def tsne(X, n_comp = 2,lr=400,perp=30):
+def tsne(X, n_comp = 2,lr=1000,perp=30):
     X_embedded = TSNE(n_components=n_comp,learning_rate=lr,n_jobs=-1,random_state=49,perplexity=perp, verbose=4).fit_transform(X)# init = 'pca',
     #manifold.TSNE(n_components=n_components, init='pca',random_state=0)
     return X_embedded
@@ -654,7 +654,7 @@ def remove_outliers_global(data, y, print_outlier_percentage_p_feature, outlier_
     if print_outlier_percentage_p_feature:
         table = []
         feat_names = get_features_dict()
-
+    #for each feature column
     for i in range(data.shape[1]):
         array = data[:, i]
 

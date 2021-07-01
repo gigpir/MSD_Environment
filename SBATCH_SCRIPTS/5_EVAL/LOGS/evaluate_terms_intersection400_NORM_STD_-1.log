@@ -1,5 +1,5 @@
-INFO: localdir at /scratch/296068.crottondi
+INFO: localdir at /scratch/149671.crottondi
 INFO: your job will run on local system.
 /home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/5_EVAL
 Apply filter to terms, threshold set to 400
-Time taken: 10.608287334442139 s
+Time taken: 594.1807985305786 s

@@ -1,0 +1,6 @@
+INFO: localdir at /scratch/296463.crottondi
+INFO: your job will run on local system.
+/home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/5_EVAL
+Apply filter to terms, threshold set to 100
+THREAD[22368] -> 19 positions remainingTHREAD[22368] -> 18 positions remainingTHREAD[22368] -> 17 positions remainingTHREAD[22368] -> 16 positions remainingTHREAD[22368] -> 15 positions remainingTHREAD[22368] -> 14 positions remainingTHREAD[22368] -> 13 positions remainingTHREAD[22368] -> 12 positions remainingTHREAD[22368] -> 11 positions remainingTHREAD[22368] -> 10 positions remainingTHREAD[22368] -> 9 positions remainingTHREAD[22368] -> 8 positions remainingTHREAD[22368] -> 7 positions remainingTHREAD[22368] -> 6 positions remainingTHREAD[22368] -> 5 positions remainingTHREAD[22368] -> 4 positions remainingTHREAD[22368] -> 3 positions remainingTHREAD[22368] -> 2 positions remainingTHREAD[22368] -> 1 positions remainingTHREAD[22368] -> 0 positions remainingTHREAD[22368] -> found 0 times artists with no terms
+Time taken: 16.410998582839966 s

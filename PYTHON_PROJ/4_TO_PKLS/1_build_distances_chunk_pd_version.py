@@ -45,9 +45,6 @@ def build_matrix_slave(metric,artists_ids):
 
 def build_matrix_master(chunk):
     global artists
-    global metric
-    global df
-
     start = time.time()
     func = partial(build_matrix_slave, metric)
 
@@ -61,6 +58,7 @@ def build_matrix_master(chunk):
 
     with multiprocessing.Pool(nproc) as p:
         result = p.map(func, split)
+    del artists
     df = pd.concat(result)
     #DEBUG
     #result = func(artists_ids)

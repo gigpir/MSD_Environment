@@ -27,7 +27,7 @@ def main(args):
         chunk_filename = 'chunk_' + str(i) + '_OUT.pkl'
         chunk_pathname = chunk_folder+chunk_filename
         chunk_out = load_data(filename=chunk_pathname)
-
+        chunk_out.dropna(axis=1, how="all", inplace=True)
 
         frames.append(chunk_out)
 

@@ -30,8 +30,11 @@ def build_max_length_ranking(distances):
 def main(args):
     distances_filename = args.distances
     note = args.note
-    distances = load_data(filename=distances_filename)
-
+    if os.path.getsize(distances_filename) > 0:
+        distances = load_data(filename=distances_filename)
+    else:
+        print(f'No such file {distances_filename}')
+        return
     max_length_ranking = build_max_length_ranking(distances=distances)
 
     output_path = os.path.dirname(distances_filename)

@@ -28,11 +28,13 @@ def main(args):
         chunk_pathname = chunk_folder+chunk_filename
         chunk_out = load_data(filename=chunk_pathname)
         chunk_out.dropna(axis=1, how="all", inplace=True)
-
+        print(chunk_out.size)
+        print(chunk_out.head())
         frames.append(chunk_out)
 
     df = pd.concat(frames)
-
+    print(df.size)
+    print(df.head())
         #print('chunk ', str(i), 'Memory (GB) : ', getCurrentMemoryUsage()/(2**20))
     final_pathname = chunk_folder+'merged_OUT.pkl'
     #print('before gc Memory (GB) : ', getCurrentMemoryUsage() / (2 ** 20))

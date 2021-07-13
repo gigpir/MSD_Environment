@@ -31,7 +31,8 @@ def main(args):
     distances_filename = args.distances
     note = args.note
     if os.path.getsize(distances_filename) > 0:
-        distances = load_data(filename=distances_filename)
+        #distances = load_data(filename=distances_filename)
+        distances = pd.read_csv(distances_filename, index_col=0)
     else:
         print(f'No such file {distances_filename}')
         return

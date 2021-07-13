@@ -36,14 +36,14 @@ def main(args):
     print(df.size)
     print(df.head())
         #print('chunk ', str(i), 'Memory (GB) : ', getCurrentMemoryUsage()/(2**20))
-    final_pathname = chunk_folder+'merged_OUT.pkl'
+    final_pathname = chunk_folder+'merged_OUT.csv'
     #print('before gc Memory (GB) : ', getCurrentMemoryUsage() / (2 ** 20))
     gc.collect()
     #print('after gc Memory (GB) : ', getCurrentMemoryUsage() / (2 ** 20))
     # drop all entirely nan columns
     df.dropna(axis=1, how="all", inplace=True)
 
-    save_data(dict=df, filename=final_pathname)
+    df.to_csv(final_pathname)
     #print('chunk ', str(i), 'Memory (GB) : ', getCurrentMemoryUsage() / (2 ** 20))
 
 if __name__ == '__main__':

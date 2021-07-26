@@ -3,13 +3,13 @@
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=luigi.pirisi@studenti.polito.it
 #SBATCH --partition=global
-#SBATCH --time=160:00:00
+#SBATCH --time=15:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=32
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --output=./LOGS/build_distances_chunk_{NUMBER}.log
-#SBATCH --mem-per-cpu=100M
+#SBATCH --mem=300gb
 
 #---- load python3 module
 module load singularity/3.2.1

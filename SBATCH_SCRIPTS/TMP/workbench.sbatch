@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=workbench
+#SBATCH --job-name=workbench_cc
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=luigi.pirisi@studenti.polito.it
 #SBATCH --partition=global
@@ -21,10 +21,10 @@ cd /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/TMP
 
 singularity exec /home/crottondi/PIRISI_TESI/singularity/projEnv_v2.img \
 python3 /home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/TMP/workbench.py \
---distances /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/distances_m3_bivariate_hungarian.pkl \
+--distances /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/distances_m2_bivariate_hungarian.csv \
 --ground_truth /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/ground_truth.pkl \
---heatmaps /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/heatmaps_m3.pkl \
+--heatmaps /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/heatmaps_m2.pkl \
 --names /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/names.pkl \
---ranking /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/max_length_ranking_m3_bivariate_hungarian.pkl \
---output_folder /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/BIV_HUN_HISTOGRAMS \
---artists_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_m3_hm.pkl
+--ranking /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/max_length_ranking_m2_bivariate_hungarian.pkl \
+--output_folder /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_OUTPUT/M2/BIV_HUN \
+--artists_pkl /home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/artists_m2_hm.pkl

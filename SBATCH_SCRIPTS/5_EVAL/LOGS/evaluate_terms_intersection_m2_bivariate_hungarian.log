@@ -1,0 +1,6 @@
+INFO: localdir at /scratch/154695.crottondi
+INFO: your job will run on local system.
+/home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/5_EVAL
+16.83871102333069
+/home/crottondi/PIRISI_TESI/MSD_Environment/FULL_PKL/max_length_ranking_m2_bivariate_hungarian.pkl
+AVG RBO 0.004604032628149582

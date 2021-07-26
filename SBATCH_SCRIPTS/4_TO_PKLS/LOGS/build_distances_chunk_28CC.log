@@ -1,0 +1,29 @@
+INFO: localdir at /scratch/153622.crottondi
+INFO: your job will run on local system.
+/home/crottondi/PIRISI_TESI/MSD_Environment/SBATCH_SCRIPTS/4_TO_PKLS
+LOADING CHUNKS...
+DONE
+Traceback (most recent call last):
+  File "/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk_pd_version.py", line 110, in <module>
+    main(args)
+  File "/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk_pd_version.py", line 82, in main
+    df = build_matrix_master(chunk=chunk)
+  File "/home/crottondi/PIRISI_TESI/MSD_Environment/PYTHON_PROJ/4_TO_PKLS/1_build_distances_chunk_pd_version.py", line 59, in build_matrix_master
+    with multiprocessing.Pool(nproc) as p:
+  File "/usr/local/lib/python3.8/multiprocessing/context.py", line 119, in Pool
+    return Pool(processes, initializer, initargs, maxtasksperchild,
+  File "/usr/local/lib/python3.8/multiprocessing/pool.py", line 212, in __init__
+    self._repopulate_pool()
+  File "/usr/local/lib/python3.8/multiprocessing/pool.py", line 303, in _repopulate_pool
+    return self._repopulate_pool_static(self._ctx, self.Process,
+  File "/usr/local/lib/python3.8/multiprocessing/pool.py", line 326, in _repopulate_pool_static
+    w.start()
+  File "/usr/local/lib/python3.8/multiprocessing/process.py", line 121, in start
+    self._popen = self._Popen(self)
+  File "/usr/local/lib/python3.8/multiprocessing/context.py", line 277, in _Popen
+    return Popen(process_obj)
+  File "/usr/local/lib/python3.8/multiprocessing/popen_fork.py", line 19, in __init__
+    self._launch(process_obj)
+  File "/usr/local/lib/python3.8/multiprocessing/popen_fork.py", line 70, in _launch
+    self.pid = os.fork()
+OSError: [Errno 12] Cannot allocate memory

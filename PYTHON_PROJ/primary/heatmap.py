@@ -258,7 +258,7 @@ def compute_distance_bipartite_graph_hungarian(h1, h2, dim=20):
                         if h2[k, w] > 0:
                             # euclidean distance considering also the diffenence between 2 heatmap values
                             row.append( np.sqrt(
-                                (k - i) ** 2 + (w - j) ** 2 + (500 * (h2[k, w] - h1[i, j])) ** 2))
+                                (k - i) ** 2 + (w - j) ** 2 + (1000 * (h2[k, w] - h1[i, j])) ** 2))
                             count2 += 1
                 count1 += 1
                 distances.append(row)
